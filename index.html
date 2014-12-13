@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="knockout-3.2.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body data-bind="style: {  }">
+    <fieldset>
+        <legend>Control panel</legend>
+        <label>Content: <input type="text" data-bind="textInput : content"/></label>
+        <br>
+        <label>Text color: <input type="color" data-bind="value: color"/></label>
+        <label>Background color: <input type="color" data-bind="value: backgroundColor"/></label>
+        <br>
+        <label>Font family: 
+            <select data-bind="options: fontFamilies, value: fontFamily, valueUpdate: 'afterkeydown'"/>
+            </select>
+        </label>
+        <button id="add-google-font-face-button">Add font from Google Fonts</button>
+        <button id="add-font-face-button">Add font from URL</button>
+        <br>
+        <label>Font size: <input type="number" data-bind="value: fontSize, valueUpdate: 'afterkeydown'"/>px</label>
+        <label>Font style: 
+            <select data-bind="options: fontStyleValues, value: fontStyle, valueUpdate: 'afterkeydown'"/>
+            </select>
+        </label>
+        <label>Font weight: 
+            <select data-bind="options: fontWeightValues, value: fontWeight, valueUpdate: 'afterkeydown'"/>
+            </select>
+        </label>
+        <label>Letter spacing: <input type="number" data-bind="value: letterSpacing, valueUpdate: 'afterkeydown'"/>px</label>
+        <br>
+        <label>Text transform: 
+            <select data-bind="options: textTransformValues, value: textTransform, valueUpdate: 'afterkeydown'"/>
+            </select>
+        </label>
+
+        <br>
+        <br>
+        <fieldset data-bind="with: shadow">
+            <legend>Shadow</legend>
+            <label>Color: <input type="color" data-bind="value: color"/></label>
+            <label>Offset X: <input type="number" data-bind="value: offsetX, valueUpdate: 'afterkeydown'"/>
+            <label>Offset Y: <input type="number" data-bind="value: offsetY, valueUpdate: 'afterkeydown'"/>
+            <label>Blur: <input type="number" data-bind="value: blur, valueUpdate: 'afterkeydown'"/>
+        </fieldset>
+        
+        
+        <br>
+        <br>
+        <fieldset>
+            <legend>Effects</legend>
+            <label>Deep shadow: <input type="checkbox" data-bind="checked: deepShadow"/></label>
+        </fieldset>
+    </fieldset>
+
+    <div id="result-container" class="center-container" data-bind="style: { backgroundColor: backgroundColor }">
+        <label
+            id="result"
+            class="center" 
+            data-bind="text: content, 
+                       style: { 
+                            color: color, 
+                            backgroundColor: backgroundColor,
+                            fontFamily: fontFamily,
+                            fontSize: fontSize() + 'px',
+                            fontWeight: fontWeight,
+                            fontStyle: fontStyle,
+                            letterSpacing: letterSpacing() + 'px',
+                            textShadow: shadow().result,
+                            textTransform: textTransform,
+                        }"
+            >My header</label>
+    </div>
+
+    <script src="viewmodel.js"></script>
+</body>
+</html>
